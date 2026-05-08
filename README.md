@@ -1,4 +1,4 @@
-﻿# Lambda Music Bot
+﻿# Lambda Music
 
 `discord.py` 기반의 음악 봇입니다.
 
