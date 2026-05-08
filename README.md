@@ -8,7 +8,7 @@
 - 재생 버튼은 모달 입력으로 유튜브 링크/검색어를 받아 재생
 
 ## 실행 준비
-1. Python 3.11+ 설치
+1. Python 설치
 2. FFmpeg 설치 후 PATH 등록
 3. 프로젝트 폴더에서 아래 실행
 
@@ -24,26 +24,4 @@ copy .env.example .env
 ## 실행
 ```bash
 python main.py
-```
-
-## 폴더 구조
-```text
-Discord Lambda Music Bot/
-  main.py
-  bot/
-    app.py
-    config.py
-    logging_config.py
-    cogs/
-      panel_cog.py
-    music/
-      manager.py
-      models.py
-      player.py
-      queue.py
-      ytdl_source.py
-    ui/
-      embeds.py
-      modals.py
-      views.py
 ```
