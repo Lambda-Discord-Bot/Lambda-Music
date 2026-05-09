@@ -2,7 +2,7 @@
 
 import discord
 
-from bot.music.manager import MusicManager
+from src.music.manager import MusicManager
 
 
 class PlayModal(discord.ui.Modal, title="음악 재생"):
@@ -45,3 +45,4 @@ class PlayModal(discord.ui.Modal, title="음악 재생"):
             f"대기열에 추가됨: **{track.title}** ({track.duration_text})",
             ephemeral=True,
         )
+

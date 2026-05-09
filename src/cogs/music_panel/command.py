@@ -4,9 +4,9 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from bot.ui.embeds import build_panel_embed
-from bot.ui.panel import MusicPanelView
-from bot.ui.panel_assets import build_panel_thumbnail_file
+from src.ui.embeds import build_panel_embed
+from src.ui.panel import MusicPanelView
+from src.ui.panel_assets import build_panel_thumbnail_file
 
 
 class MusicPanelCog(commands.Cog):
@@ -66,3 +66,4 @@ class MusicPanelCog(commands.Cog):
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MusicPanelCog(bot))
+

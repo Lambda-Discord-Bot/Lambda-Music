@@ -4,7 +4,7 @@ import logging
 
 import discord
 
-from bot.music.player import GuildMusicPlayer
+from src.music.player import GuildMusicPlayer
 
 logger = logging.getLogger(__name__)
 
@@ -43,8 +43,8 @@ class MusicManager:
                 return
             self._latest_refresh_version[guild_id] = version
 
-        from bot.ui.embeds import build_panel_embed
-        from bot.ui.panel import MusicPanelView
+        from src.ui.embeds import build_panel_embed
+        from src.ui.panel import MusicPanelView
 
         player = self.get_player(guild)
         embed = build_panel_embed(player)
@@ -85,3 +85,4 @@ class MusicManager:
         self._players.clear()
         self._panel_messages.clear()
         self._latest_refresh_version.clear()
+

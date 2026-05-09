@@ -4,7 +4,7 @@ import asyncio
 from collections import deque
 import random
 
-from bot.music.models import Track
+from src.music.models import Track
 
 
 class MusicQueue:
@@ -63,3 +63,4 @@ class MusicQueue:
     async def __len__(self) -> int:
         async with self._lock:
             return len(self._queue)
+

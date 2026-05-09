@@ -2,8 +2,8 @@
 
 import discord
 
-from bot.music.player import GuildMusicPlayer
-from bot.ui.panel_assets import PANEL_THUMBNAIL_ATTACHMENT_URL
+from src.music.player import GuildMusicPlayer
+from src.ui.panel_assets import PANEL_THUMBNAIL_ATTACHMENT_URL
 
 
 def build_panel_embed(player: GuildMusicPlayer) -> discord.Embed:
@@ -36,3 +36,4 @@ def build_panel_embed(player: GuildMusicPlayer) -> discord.Embed:
     embed.add_field(name="다음 대기곡", value=next_value, inline=True)
     embed.set_footer(text="재생 버튼으로 유튜브 링크 또는 검색어를 입력할 수 있습니다.")
     return embed
+

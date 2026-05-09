@@ -5,9 +5,9 @@ import logging
 import discord
 from discord.ext import commands
 
-from bot.core.settings import Settings
-from bot.music.manager import MusicManager
-from bot.ui.panel import MusicPanelView
+from src.core.settings import Settings
+from src.music.manager import MusicManager
+from src.ui.panel import MusicPanelView
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +24,7 @@ class LambdaMusicBot(commands.Bot):
         self._synced_once = False
 
     async def setup_hook(self) -> None:
-        await self.load_extension("bot.cogs.music_panel")
+        await self.load_extension("src.cogs.music_panel")
         self.add_view(MusicPanelView(self.music_manager))
 
     async def on_ready(self) -> None:
@@ -38,3 +38,4 @@ class LambdaMusicBot(commands.Bot):
     async def close(self) -> None:
         await self.music_manager.shutdown()
         await super().close()
+

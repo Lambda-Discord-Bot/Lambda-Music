@@ -7,7 +7,7 @@ from typing import Any
 import discord
 import yt_dlp
 
-from bot.music.models import Track
+from src.music.models import Track
 
 
 _YTDL_OPTIONS: dict[str, Any] = {
@@ -68,3 +68,4 @@ class YTDLSource:
             raise RuntimeError("오디오 스트림 URL 추출에 실패했습니다.")
 
         return discord.FFmpegPCMAudio(stream_url, **_FFMPEG_OPTIONS)
+

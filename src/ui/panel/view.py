@@ -2,10 +2,10 @@
 
 import discord
 
-from bot.music.manager import MusicManager
-from bot.ui.embeds import build_panel_embed, build_queue_embed
-from bot.ui.modals import PlayModal
-from bot.ui.panel.voice_checks import get_author_voice_channel
+from src.music.manager import MusicManager
+from src.ui.embeds import build_panel_embed, build_queue_embed
+from src.ui.modals import PlayModal
+from src.ui.panel.voice_checks import get_author_voice_channel
 
 
 class MusicPanelView(discord.ui.View):
@@ -156,3 +156,4 @@ class MusicPanelView(discord.ui.View):
             ephemeral=True,
         )
         await self._refresh_panel(interaction)
+

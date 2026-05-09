@@ -6,9 +6,9 @@ from collections.abc import Awaitable, Callable
 
 import discord
 
-from bot.music.models import RepeatMode, Track
-from bot.music.queue import MusicQueue
-from bot.music.ytdl_source import YTDLSource
+from src.music.models import RepeatMode, Track
+from src.music.queue import MusicQueue
+from src.music.ytdl_source import YTDLSource
 
 logger = logging.getLogger(__name__)
 
@@ -171,3 +171,4 @@ class GuildMusicPlayer:
                 await self.on_state_change(self._state_version)
             except Exception:
                 logger.exception("State-change callback failed in guild=%s", self.guild.id)
+
