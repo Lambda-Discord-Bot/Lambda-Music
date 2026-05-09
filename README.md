@@ -3,7 +3,7 @@
 `discord.py` 기반의 음악 봇입니다.
 
 ## 패널 미리보기
-![Lambda Music Panel](assets/panel-preview.png)
+<img src="assets/panel-preview.png" alt="Lambda Music Panel" width="50%" />
 
 ## 실행 방법
 1. Python 설치
