@@ -2,6 +2,9 @@
 
 `discord.py` 기반의 음악 봇입니다.
 
+## 패널 미리보기
+![Lambda Music Panel](assets/panel-preview.png)
+
 ## 실행 방법
 1. Python 설치
 2. FFmpeg 설치 후 PATH 등록
