@@ -25,7 +25,8 @@ class GuildMusicPlayer:
         self._playback_task: asyncio.Task[None] | None = None
         self._track_finished: asyncio.Event | None = None
         self._stopping = False
-        self.on_state_change: Callable[[], Awaitable[None]] | None = None
+        self._state_version = 0
+        self.on_state_change: Callable[[int], Awaitable[None]] | None = None
 
     @property
     def voice_client(self) -> discord.VoiceClient | None:
@@ -71,7 +72,7 @@ class GuildMusicPlayer:
 
             try:
                 source = await YTDLSource.create_audio_source(track.webpage_url)
-            except Exception as exc:
+            except Exception:
                 logger.exception("Source creation failed: guild=%s track=%s", self.guild.id, track.webpage_url)
                 self.current = None
                 await self._notify_state_change()
@@ -164,8 +165,9 @@ class GuildMusicPlayer:
                 pass
 
     async def _notify_state_change(self) -> None:
+        self._state_version += 1
         if self.on_state_change is not None:
             try:
-                await self.on_state_change()
+                await self.on_state_change(self._state_version)
             except Exception:
                 logger.exception("State-change callback failed in guild=%s", self.guild.id)

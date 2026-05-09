@@ -14,12 +14,13 @@ class MusicManager:
         self.bot = bot
         self._players: dict[int, GuildMusicPlayer] = {}
         self._panel_messages: dict[int, set[tuple[int, int]]] = {}
+        self._latest_refresh_version: dict[int, int] = {}
 
     def get_player(self, guild: discord.Guild) -> GuildMusicPlayer:
         player = self._players.get(guild.id)
         if player is None:
             player = GuildMusicPlayer(self.bot, guild)
-            player.on_state_change = lambda: self.refresh_panels(guild.id)
+            player.on_state_change = lambda version: self.refresh_panels(guild.id, version)
             self._players[guild.id] = player
         return player
 
@@ -27,7 +28,7 @@ class MusicManager:
         refs = self._panel_messages.setdefault(guild_id, set())
         refs.add((channel_id, message_id))
 
-    async def refresh_panels(self, guild_id: int) -> None:
+    async def refresh_panels(self, guild_id: int, version: int | None = None) -> None:
         refs = self._panel_messages.get(guild_id)
         if not refs:
             return
@@ -35,6 +36,12 @@ class MusicManager:
         guild = self.bot.get_guild(guild_id)
         if guild is None:
             return
+
+        if version is not None:
+            latest = self._latest_refresh_version.get(guild_id, 0)
+            if version < latest:
+                return
+            self._latest_refresh_version[guild_id] = version
 
         from bot.ui.embeds import build_panel_embed
         from bot.ui.views import MusicPanelView
@@ -44,6 +51,9 @@ class MusicManager:
         stale_refs: set[tuple[int, int]] = set()
 
         for channel_id, message_id in refs:
+            if version is not None and version < self._latest_refresh_version.get(guild_id, version):
+                return
+
             channel = self.bot.get_channel(channel_id)
             if channel is None:
                 try:
@@ -74,3 +84,4 @@ class MusicManager:
             await player.shutdown()
         self._players.clear()
         self._panel_messages.clear()
+        self._latest_refresh_version.clear()

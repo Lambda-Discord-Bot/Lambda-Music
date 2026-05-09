@@ -21,8 +21,11 @@ def build_panel_embed(player: GuildMusicPlayer) -> discord.Embed:
         embed.add_field(name="요청자", value=track.requester_name, inline=True)
         if track.thumbnail:
             embed.set_image(url=track.thumbnail)
+        else:
+            embed.set_image(url=None)
     else:
         embed.add_field(name="현재 재생", value="재생 중인 곡이 없습니다.", inline=False)
+        embed.set_image(url=None)
 
     next_track = player.queue.peek()
     next_value = "없음"
