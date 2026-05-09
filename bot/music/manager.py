@@ -44,7 +44,7 @@ class MusicManager:
             self._latest_refresh_version[guild_id] = version
 
         from bot.ui.embeds import build_panel_embed
-        from bot.ui.views import MusicPanelView
+        from bot.ui.panel import MusicPanelView
 
         player = self.get_player(guild)
         embed = build_panel_embed(player)

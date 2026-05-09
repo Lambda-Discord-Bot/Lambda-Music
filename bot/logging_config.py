@@ -1,10 +1,3 @@
-﻿from __future__ import annotations
+﻿from bot.core.logging_setup import configure_logging
 
-import logging
-
-
-def configure_logging() -> None:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-    )
+__all__ = ["configure_logging"]
